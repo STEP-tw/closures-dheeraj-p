@@ -9,7 +9,11 @@ const makeCounterFromZero = undefined;
 const makeDeltaTracker = undefined;
 const makeFiboGenerator = undefined;
 const makeCycler = undefined;
-const curry = undefined;
+const curry = function(combiner, initialValue){
+  return function(valueToCombine, anotherValueToCombine){
+    return combiner(initialValue, valueToCombine, anotherValueToCombine);
+  };
+};
 
 const compose = function(firstFunc, secondFunc){
   return function(collection, anotherCollection){
