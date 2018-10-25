@@ -4,7 +4,12 @@ const makeConstant = function(valueToMakeConstant){
   };
 };
 
-const makeCounterFromN = undefined;
+const makeCounterFromN = function(countInitializer){
+  let counter = countInitializer;
+  return function(){
+    return counter++;
+  };
+};
 
 const makeCounterFromZero = function(){
   let counter = 0;
