@@ -5,13 +5,27 @@ const makeConstant = function(valueToMakeConstant){
 };
 
 const makeCounterFromN = undefined;
+
 const makeCounterFromZero = function(){
   let counter = 0;
   return function(){
     return counter++;
   };
 };
-const makeDeltaTracker = undefined;
+
+const makeDeltaTracker = function(initialValue){
+  let tracker = {old : initialValue, new : initialValue};  
+  return function(deltaValue){
+    if(!deltaValue){
+      deltaValue = 0;
+    }
+    tracker.old = tracker.new;
+    tracker.delta = deltaValue;
+    tracker.new = tracker.delta + tracker.old;
+    return tracker;
+  };
+};
+
 const makeFiboGenerator = undefined;
 const makeCycler = undefined;
 
