@@ -1,6 +1,6 @@
-const makeConstant = function(valueToMakeConstant){
+const makeConstant = function(value){
   return function(){
-    return valueToMakeConstant;
+    return value;
   };
 };
 
@@ -66,9 +66,9 @@ const curry = function(combiner, initialValue){
   };
 };
 
-const compose = function(firstFunc, secondFunc){
+const compose = function(firstOperation, secondOperation){
   return function(collection, anotherCollection){
-    let result = firstFunc(secondFunc(collection, anotherCollection));
+    let result = firstOperation(secondOperation(collection, anotherCollection));
     return result;
   };
 };
