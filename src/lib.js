@@ -5,7 +5,13 @@ const makeDeltaTracker = undefined;
 const makeFiboGenerator = undefined;
 const makeCycler = undefined;
 const curry = undefined;
-const compose = undefined;
+
+const compose = function(firstFunc, secondFunc){
+  return function(collection, anotherCollection){
+    let result = firstFunc(secondFunc(collection, anotherCollection));
+    return result;
+  };
+};
 
 exports.makeConstant=makeConstant;
 exports.makeCounterFromZero=makeCounterFromZero;
