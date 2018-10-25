@@ -5,10 +5,16 @@ const makeConstant = function(valueToMakeConstant){
 };
 
 const makeCounterFromN = undefined;
-const makeCounterFromZero = undefined;
+const makeCounterFromZero = function(){
+  let counter = 0;
+  return function(){
+    return counter++;
+  };
+};
 const makeDeltaTracker = undefined;
 const makeFiboGenerator = undefined;
 const makeCycler = undefined;
+
 const curry = function(combiner, initialValue){
   return function(valueToCombine, anotherValueToCombine){
     return combiner(initialValue, valueToCombine, anotherValueToCombine);
