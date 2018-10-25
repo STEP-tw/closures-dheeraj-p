@@ -50,7 +50,16 @@ const makeFiboGenerator = function(firstInitialValue, secondInitialValue){
   };
 };
 
-const makeCycler = undefined;
+const makeCycler = function(collection){
+  let currentIndex = 0;
+  let copyOfCollection = collection.slice();
+  return function(){
+    let sizeOfCollection = copyOfCollection.length;
+    let indexToReturnValueOf = currentIndex % sizeOfCollection;
+    currentIndex++;
+    return copyOfCollection[indexToReturnValueOf];
+  };
+};
 
 const curry = function(combiner, initialValue){
   return function(valueToCombine, anotherValueToCombine){
