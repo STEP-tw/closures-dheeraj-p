@@ -31,7 +31,25 @@ const makeDeltaTracker = function(initialValue){
   };
 };
 
-const makeFiboGenerator = undefined;
+const makeFiboGenerator = function(firstInitialValue, secondInitialValue){
+  let firstTerm = -firstInitialValue;
+  let secondTerm = secondInitialValue + firstTerm;
+  
+  if(!secondInitialValue){
+    secondTerm = firstInitialValue;
+  }
+  if(!firstInitialValue){
+    firstTerm = -1;
+    secondTerm = 1;
+  }
+  return function(){
+    let result = firstTerm + secondTerm;
+    firstTerm = secondTerm;
+    secondTerm = result;
+    return result;
+  };
+};
+
 const makeCycler = undefined;
 
 const curry = function(combiner, initialValue){
