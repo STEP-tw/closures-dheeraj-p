@@ -12,10 +12,7 @@ const makeCounterFromN = function(countInitializer){
 };
 
 const makeCounterFromZero = function(){
-  let counter = 0;
-  return function(){
-    return counter++;
-  };
+  return makeCounterFromN(0);
 };
 
 const makeDeltaTracker = function(initialValue){
@@ -33,10 +30,11 @@ const makeDeltaTracker = function(initialValue){
 };
 
 const makeFiboGenerator = function(firstInitialValue, secondInitialValue){
-  let firstTerm = -firstInitialValue;
-  let secondTerm = secondInitialValue + firstTerm;
-  
+  let secondTerm = secondInitialValue - firstInitialValue;
+  let firstTerm = firstInitialValue - secondTerm;
+   
   if(!secondInitialValue){
+    firstTerm = -firstInitialValue;
     secondTerm = firstInitialValue;
   }
   if(!firstInitialValue){
