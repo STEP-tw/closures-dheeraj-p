@@ -16,7 +16,7 @@ const makeCounterFromZero = function(){
 };
 
 const makeDeltaTracker = function(initialValue){
-  let tracker = {old : initialValue, new : initialValue};  
+  let tracker = {new : initialValue};  
   return function(deltaValue = 0){
     tracker.old = tracker.new;
     tracker.delta = deltaValue;
@@ -29,7 +29,6 @@ const makeDeltaTracker = function(initialValue){
 const makeFiboGenerator = function(firstInitialValue = 1, secondInitialValue = 0){
   let secondTerm = Math.max(firstInitialValue, secondInitialValue);
   let firstTerm = Math.min(secondInitialValue, firstInitialValue);
-
   return function(){
     let result = firstTerm;
     firstTerm = secondTerm;
