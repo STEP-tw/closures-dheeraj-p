@@ -17,10 +17,7 @@ const makeCounterFromZero = function(){
 
 const makeDeltaTracker = function(initialValue){
   let tracker = {old : initialValue, new : initialValue};  
-  return function(deltaValue){
-    if(!deltaValue){
-      deltaValue = 0;
-    }
+  return function(deltaValue = 0){
     tracker.old = tracker.new;
     tracker.delta = deltaValue;
     tracker.new = tracker.delta + tracker.old;
@@ -29,22 +26,14 @@ const makeDeltaTracker = function(initialValue){
   };
 };
 
-const makeFiboGenerator = function(firstInitialValue, secondInitialValue){
-  let secondTerm = secondInitialValue - firstInitialValue;
-  let firstTerm = firstInitialValue - secondTerm;
-   
-  if(!secondInitialValue){
-    firstTerm = -firstInitialValue;
-    secondTerm = firstInitialValue;
-  }
-  if(!firstInitialValue){
-    firstTerm = -1;
-    secondTerm = 1;
-  }
+const makeFiboGenerator = function(firstInitialValue = 1, secondInitialValue = 0){
+  let secondTerm = Math.max(firstInitialValue, secondInitialValue);
+  let firstTerm = Math.min(secondInitialValue, firstInitialValue);
+
   return function(){
-    let result = firstTerm + secondTerm;
+    let result = firstTerm;
     firstTerm = secondTerm;
-    secondTerm = result;
+    secondTerm = result + firstTerm;
     return result;
   };
 };
