@@ -1,6 +1,6 @@
-const makeConstant = function(value){
+const makeConstant = function(constant){
   return function(){
-    return value;
+    return constant;
   };
 };
 
@@ -16,12 +16,11 @@ const makeCounterFromZero = function(){
 };
 
 const makeDeltaTracker = function(initialValue){
-  let tracker = {new : initialValue};  
-  return function(deltaValue = 0){
-    tracker.old = tracker.new;
-    tracker.delta = deltaValue;
-    tracker.new = tracker.delta + tracker.old;
-    let result = Object.assign({}, tracker);
+  let old = initialValue;
+  return function(delta = 0){
+    let newValue = old + delta;
+    let result = {old, delta, new : newValue};
+    old = newValue;
     return result;
   };
 };
@@ -41,8 +40,7 @@ const makeCycler = function(collection){
   let currentIndex = 0;
   let copyOfCollection = collection.slice();
   return function(){
-    let sizeOfCollection = copyOfCollection.length;
-    let indexToReturnValueOf = currentIndex % sizeOfCollection;
+    let indexToReturnValueOf = currentIndex % copyOfCollection.length;
     currentIndex++;
     return copyOfCollection[indexToReturnValueOf];
   };
